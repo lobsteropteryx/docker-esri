@@ -2,7 +2,7 @@
 Dockerfiles for base centos, ags, portal, and postgres containers.  Draws heavily from the work of [Mansour](https://github.com/mraad/docker-arcgis) and many others in the Docker community.
 
 ## Requirements
-* Download the installers for AGS and Portal (see http://support.esri.com/Downloads)
+* Download the installers for AGS and Portal (see https://my.esri.com/#/downloads)
 * Get your provisioning file for AGS/Portal
 * Install [virtualbox](https://www.virtualbox.org/wiki/Downloads)
 * Install [docker](https://docs.docker.com/engine/installation/)
