@@ -1,9 +1,8 @@
 FROM centos:7
 
 MAINTAINER @imf <ian.firkin@gmail.com>
-
-RUN yum -y --nogpg install xorg-x11-server-Xvfb.x86_64 fontconfig freetype gettext less htop vim net-tools sudo
-
+RUN yum -y --nogpg install epel-release git xorg-x11-server-Xvfb.x86_64 fontconfig freetype gettext less htop vim net-tools sudo
+RUN yum -y --nogpg install python-pip python-wheel 
 ENV USER arcgis
 ENV GROUP arcgis
 
