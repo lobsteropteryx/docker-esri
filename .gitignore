@@ -1,2 +1,2 @@
-*.tag.gz
-*.prvc
+ags/**/*.tag.gz
+ags/**/*.prvc
