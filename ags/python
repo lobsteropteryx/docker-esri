@@ -19,7 +19,7 @@ if [ -f $arcenv ]; then
   fi                                                                         
   # don't preload libjsig.so for standalone app                              
   unset LD_PRELOAD                                                           
-  wine "C:/Python27/ArcGISx6410.4/python.exe" "$@"                           
+  wine "C:/Python27/ArcGISx6410.3/python.exe" "$@"                           
 else                                                                         
   echo "Unable to set up environment.  Cannot find $arcenv"                  
 fi                                                                           
