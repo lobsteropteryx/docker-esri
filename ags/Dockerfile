@@ -8,8 +8,9 @@ EXPOSE 6080 6443 4001 4002 4003 4004 4005 4006
 
 USER arcgis 
 
+ARG BUILD_HOST
 WORKDIR /home
-RUN wget http://D7510-1613.gisinc.local:8000/ArcGIS_for_Server_Linux_104_149446.tar.gz && \
+RUN wget http://$BUILD_HOST/ArcGIS_for_Server_Linux_104_149446.tar.gz && \
 tar -xvzf ArcGIS_for_Server_Linux_104_149446.tar.gz && \
 rm ArcGIS_for_Server_Linux_104_149446.tar.gz && \
 /home/ArcGISServer/Setup -m silent -l yes -a /home/ArcGIS_ServerStandardEnterprise_EDN_2017.prvc -d /home/arcgis && \
