@@ -4,13 +4,16 @@ MAINTAINER @imf <ian.firkin@gmail.com>
 RUN yum -y install mesa-libGLU libXtst libXi libXrender 
 RUN yum -y --nogpg install python-pip python-wheel 
 
-ADD ArcGIS_ServerStandardEnterprise_EDN_2017.prvc /home/arc.prvc
+ARG PRVC
+ARG AGS_ZIP
+
+ADD $PRVC /home/arc.prvc
 
 USER $USER
 WORKDIR /home
-RUN wget http://D7510-1613.gisinc.local:8000/ArcGIS_for_Server_Linux_1031_145870.tar.gz && \
-tar -xvzf ArcGIS_for_Server_Linux_1031_145870.tar.gz && \
-rm ArcGIS_for_Server_Linux_1031_145870.tar.gz && \
+RUN wget http://D7510-1613.gisinc.local:8000/$AGS_ZIP && \
+tar -xvzf $AGS_ZIP && \
+rm $AGS_ZIP && \
 /home/ArcGISServer/Setup -m silent -l yes -a /home/arc.prvc -d /home && \
 rm -rf /home/ArcGISServer
 
