@@ -1,6 +1,6 @@
 FROM arcgis-base
 
-MAINTAINER @imf <ian.firkin@gmail.com>
+MAINTAINER @imf <ian.firkin@gisinc.com>
 
 ADD ArcGIS_ServerStandardEnterprise_EDN_2017.prvc /home
 
@@ -9,10 +9,11 @@ EXPOSE 6080 6443 4001 4002 4003 4004 4005 4006
 USER arcgis 
 
 ARG BUILD_HOST
+ARG AGS_INSTALLER
 WORKDIR /home
-RUN wget http://$BUILD_HOST/ArcGIS_for_Server_Linux_104_149446.tar.gz && \
-tar -xvzf ArcGIS_for_Server_Linux_104_149446.tar.gz && \
-rm ArcGIS_for_Server_Linux_104_149446.tar.gz && \
+RUN wget http://$BUILD_HOST/$AGS_INSTALLER && \
+tar -xvzf $AGS_INSTALLER && \
+rm $AGS_INSTALLER && \
 /home/ArcGISServer/Setup -m silent -l yes -a /home/ArcGIS_ServerStandardEnterprise_EDN_2017.prvc -d /home/arcgis && \
 rm -rf /home/ArcGISServer
 
