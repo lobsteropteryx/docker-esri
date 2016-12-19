@@ -5,15 +5,15 @@ RUN yum -y install mesa-libGLU libXtst libXi libXrender
 RUN yum -y --nogpg install python-pip python-wheel 
 
 ARG PRVC
-ARG AGS_ZIP
+ARG AGS_INSTALLER
 
 ADD $PRVC /home/arc.prvc
 
 USER $USER
 WORKDIR /home
-RUN wget http://D7510-1613.gisinc.local:8000/$AGS_ZIP && \
-tar -xvzf $AGS_ZIP && \
-rm $AGS_ZIP && \
+RUN wget http://D7510-1613.gisinc.local:8000/$AGS_INSTALLER && \
+tar -xvzf $AGS_INSTALLER && \
+rm $AGS_INSTALLER && \
 /home/ArcGISServer/Setup -m silent -l yes -a /home/arc.prvc -d /home && \
 rm -rf /home/ArcGISServer
 
