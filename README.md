@@ -24,12 +24,12 @@ export DOCKER_MACHINE_NAME="arcgis"
 ```
 
 ### Base Image
-Run `base/build_image.sh`
+Run `base/build-image.sh`
 
 ### AGS Image
 * Copy your AGS installer and provisioning file to `ags/` (i.e. `ArcGIS_for_Server_Linux_1041_151978.tar.gz` and `EDN_AGSADVENT_Portal_20161010.prvc`)
 * Change the registration email in `ags/Dockerfile` to the appropriate email
-* Run `ags/build_image.sh`
+* Run `ags/build-image.sh`
 * Run `ags/run.sh`
 * In your browser, navigate to the AGS manager on the VM ip address, i.e. `https://192.168.99.100:6443/arcgis/manager/`
 
@@ -37,7 +37,7 @@ Run `base/build_image.sh`
 * Copy your Portal installer and provisioning file to `portal/` (i.e. `Portal_for_ArcGIS_Linux_1041_151999.tar.gz`  and `EDN_AGSADVENT_Portal_20161010.prvc`)
 * Change the registration email in `ags/Dockerfile` to the appropriate email
 * *Important*: There is a bug in the automatic installer, where it only reads a single entry from the provisioning file.  Open your .prvc file, and ensure that the first entry is for portal, i.e. `Portal for ArcGIS=ECP123456789`
-* Run `portal/build_image.sh`
+* Run `portal/build-image.sh`
 * Run `portal/run.sh`
 * In your browser, navigate to the Portal admin on the VM ip address, i.e. `https://192.168.99.100:7443/arcgis/home`
 * *Important*: It takes the Portal instance some time (~30 seconds) before it will begin accepting connections, even once the container is spun up.
