@@ -1,21 +1,21 @@
 FROM arcgis-base
 
 MAINTAINER @imf <ian.firkin@gmail.com>
-RUN yum -y install mesa-libGLU libXtst libXi libXrender 
-RUN yum -y --nogpg install python-pip python-wheel 
+RUN yum -y --nogpg install mesa-libGLU libXtst libXi libXrender wget
+#RUN yum -y --nogpg install python-pip python-wheel 
 
 ARG PRVC
 ARG AGS_INSTALLER
 ARG BUILD_HOST
-ADD $PRVC /home/arc.prvc
+ADD $PRVC ~/arc.prvc
 
 USER $USER
-WORKDIR /home
-RUN wget http://$BUILD_HOST/$AGS_INSTALLER && \
+WORKDIR ~/
+RUN wget http://$BUILD_HOST/$AGS_INSTALLER ~/ && \
 tar -xvzf $AGS_INSTALLER && \
 rm $AGS_INSTALLER && \
-/home/ArcGISServer/Setup -m silent -l yes -a /home/arc.prvc -d /home && \
-rm -rf /home/ArcGISServer
+~/ArcGISServer/Setup -m silent -l yes -a ~/arc.prvc -d ~/ && \
+rm -rf ~/ArcGISServer
 
 EXPOSE 6080 6443 4001 4002 4003 4004 4005 4006
 
