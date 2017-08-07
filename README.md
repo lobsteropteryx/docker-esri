@@ -27,8 +27,10 @@ export DOCKER_MACHINE_NAME="arcgis"
 Run `base/build-image.sh`
 
 ### AGS Image
-* Copy your AGS installer and provisioning file to `ags/` (i.e. `ArcGIS_for_Server_Linux_1041_151978.tar.gz` and `EDN_AGSADVENT_Portal_20161010.prvc`)
-* Change the registration email in `ags/Dockerfile` to the appropriate email
+* Copy your AGS installer (i.e. `ArcGIS_for_Server_Linux_1041_151978.tar.gz`) to a local directory that you can use as the root of a webserver
+* Spin up a [webserver](https://www.npmjs.com/package/local-web-server) pointed at the above directory
+Copy your provisioning file to `ags/` (i.e. `EDN_AGSADVENT_Portal_20161010.prvc`)
+* Edit the `ags/build-image.sh` script to point to your provisioning file and local webserver
 * Run `ags/build-image.sh`
 * Run `ags/run.sh`
 * In your browser, navigate to the AGS manager on the VM ip address, i.e. `https://192.168.99.100:6443/arcgis/manager/`
@@ -42,5 +44,3 @@ Run `base/build-image.sh`
 * In your browser, navigate to the Portal admin on the VM ip address, i.e. `https://192.168.99.100:7443/arcgis/home`
 * *Important*: It takes the Portal instance some time (~30 seconds) before it will begin accepting connections, even once the container is spun up.
 
-### PostGRES Image
-TODO
