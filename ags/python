@@ -1,25 +1,25 @@
-#!/bin/bash 
-rwd=`dirname $0`                                                             
-installDir=`cd $rwd/.. && pwd`;export installDir                             
-installer=`stat -c %U $installDir`                                           
-arcenv=$installDir/framework/etc/arcenv                                      
+#!/bin/bash
+rwd=`dirname $0`
+installDir=`cd $rwd/.. && pwd`;export installDir
+installer=`stat -c %U $installDir`
+arcenv=$installDir/framework/etc/arcenv
 # ssh doesn't set this variable, so we'll just do it here
 LOGNAME=`id -nu`
-if [ "$installer" != "$LOGNAME" ]; then                                      
+if [ "$installer" != "$LOGNAME" ]; then
     echo -n "Python can only be started by the install owner ($installer).  "
-    echo "This script must be run by the installation owner ($installer)"    
-    exit                                                                     
-fi                                                                           
-                                                                             
-if [ -f $arcenv ]; then                                                      
-  . $arcenv                                                                  
-  if [ "x$DISPLAY" = "x" ]; then                                             
-    . $installDir/framework/runtime/xvfb/init_Xvfb.sh                        
-    StartXvfb > /dev/null 2>&1                                               
-  fi                                                                         
-  # don't preload libjsig.so for standalone app                              
-  unset LD_PRELOAD                                                           
-  wine "C:/Python27/ArcGISx6410.5/python.exe" "$@"                           
-else                                                                         
-  echo "Unable to set up environment.  Cannot find $arcenv"                  
-fi                                                                           
+    echo "This script must be run by the installation owner ($installer)"
+    exit
+fi
+
+if [ -f $arcenv ]; then
+  . $arcenv
+  if [ "x$DISPLAY" = "x" ]; then
+    . $installDir/framework/runtime/xvfb/init_Xvfb.sh
+    StartXvfb > /dev/null 2>&1
+  fi
+  # don't preload libjsig.so for standalone app
+  unset LD_PRELOAD
+  wine "C:/Python27/ArcGISx6410.4/python.exe" "$@"
+else
+  echo "Unable to set up environment.  Cannot find $arcenv"
+fi
